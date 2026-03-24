@@ -1,7 +1,7 @@
 export interface AuditIssue {
-  type: 'VAT_ERROR' | 'SHRINKFLATION' | 'UNEXPECTED_FEE';
+  type: 'IVA_ERROR' | 'REDUFLACION' | 'CARGO_INESPERADO';
   item: string;
-  severity: 'HIGH' | 'MEDIUM' | 'LOW';
+  severity: 'ALTA' | 'MEDIA' | 'BAJA';
   description: string;
   recoverableAmount: number;
 }
@@ -11,16 +11,17 @@ export interface AuditResult {
   issues: AuditIssue[];
 }
 
-const VAT_REGULATIONS: Record<string, number> = {
+const IVA_REGULATIONS: Record<string, number> = {
   "PAN": 0.04, // IVA Superreducido en España
   "LECHE": 0.04,
   "FRUTA": 0.04,
   "LIBRO": 0.04,
+  "ACEITE": 0.00, // IVA eliminado temporalmente o reducido (ajustable)
   "REFRESCO": 0.21,
   "ALCOHOL": 0.21,
 };
 
-const HISTORICAL_PRICES: Record<string, { weight: number, price: number }> = {
+const PRECIOS_HISTORICOS: Record<string, { weight: number, price: number }> = {
   "Papas Fritas 150g": { weight: 150, price: 2.50 },
   "Aceite de Oliva 1L": { weight: 1000, price: 8.50 },
 };
@@ -29,21 +30,21 @@ export function runAudit(data: any): AuditResult {
   const issues: AuditIssue[] = [];
   let totalRecoverable = 0;
 
-  // 1. VAT Audit Heuristics
+  // 1. Auditoría de IVA
   if (data.items) {
     data.items.forEach((item: any) => {
       const productName = item.name.toUpperCase();
       const appliedIVA = item.taxRate || 0.21;
       
-      for (const [key, correctIVA] of Object.entries(VAT_REGULATIONS)) {
+      for (const [key, correctIVA] of Object.entries(IVA_REGULATIONS)) {
         if (productName.includes(key)) {
           if (appliedIVA > correctIVA) {
             const diff = item.total * (appliedIVA - correctIVA);
             issues.push({
-              type: 'VAT_ERROR',
+              type: 'IVA_ERROR',
               item: item.name,
-              severity: 'HIGH',
-              description: `Incorrect VAT Applied: ${appliedIVA * 100}% instead of ${correctIVA * 100}%.`,
+              severity: 'ALTA',
+              description: `IVA Incorrecto: Se ha aplicado un ${Math.round(appliedIVA * 100)}% en lugar del ${Math.round(correctIVA * 100)}% correspondiente.`,
               recoverableAmount: diff
             });
             totalRecoverable += diff;
@@ -52,16 +53,16 @@ export function runAudit(data: any): AuditResult {
       }
     });
 
-    // 2. Shrinkflation Audit
+    // 2. Auditoría de Reduflación
     data.items.forEach((item: any) => {
-      for (const [key, history] of Object.entries(HISTORICAL_PRICES)) {
+      for (const [key, history] of Object.entries(PRECIOS_HISTORICOS)) {
         if (item.name.includes("Papas Fritas") && item.weight < history.weight) {
           issues.push({
-            type: 'SHRINKFLATION',
+            type: 'REDUFLACION',
             item: item.name,
-            severity: 'MEDIUM',
-            description: `Shrinkflation Detected: Last month this item was ${history.weight}g for the same price. Current weight: ${item.weight}g. (-${((history.weight - item.weight) / history.weight * 100).toFixed(1)}%)`,
-            recoverableAmount: 0 // Not directly recoverable in cash but legal claimable for deception
+            severity: 'MEDIA',
+            description: `Reduflación Detectada: Este producto solía pesar ${history.weight}g por el mismo precio. Peso actual: ${item.weight}g. (-${((history.weight - item.weight) / history.weight * 100).toFixed(1)}%)`,
+            recoverableAmount: 0
           });
         }
       }

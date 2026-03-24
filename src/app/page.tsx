@@ -20,7 +20,7 @@ export default function Home() {
           </span>
         </div>
         <div className="glass-container" style={{ padding: '8px 20px', fontSize: '0.9rem' }}>
-          <span className="neon-text-green">●</span> SYSTEM ONLINE
+          <span className="neon-text-green">●</span> SISTEMA ONLINE
         </div>
       </nav>
 
@@ -32,8 +32,8 @@ export default function Home() {
         padding: '0 20px'
       }}>
         <h1 style={{ fontSize: 'clamp(2.5rem, 8vw, 4.5rem)', marginBottom: '24px' }}>
-          The Forensic <br />
-          <span className="neon-text-blue">Money Hunter</span>
+          El Cazador <br />
+          <span className="neon-text-blue">Forense de Dinero</span>
         </h1>
         <p style={{ 
           color: 'var(--text-secondary)', 
@@ -42,16 +42,16 @@ export default function Home() {
           margin: '0 auto 40px auto',
           lineHeight: '1.6'
         }}>
-          Stop losing money to hidden tax errors, shrinkflation, and illegal charges. 
-          Vindicat007 audits your receipts with surgical precision.
+          Deja de perder dinero por errores en el IVA, reduflación y cargos ilegales. 
+          Vindicat007 audita tus tickets con precisión quirúrgica.
         </p>
         
         <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', marginBottom: '60px' }}>
           <Link href="/scan">
-            <button className="btn-primary">START HUNTING</button>
+            <button className="btn-primary">EMPEZAR CAZA</button>
           </Link>
           <Link href="#manifesto">
-            <button className="btn-secondary">PRIVACY MANIFESTO</button>
+            <button className="btn-secondary">MANIFIESTO DE PRIVACIDAD</button>
           </Link>
         </div>
 
@@ -79,10 +79,10 @@ export default function Home() {
             opacity: 0.5 
           }}></div>
           
-          <h3 className="neon-text-blue">Edge Computing Ready</h3>
+          <h3 className="neon-text-blue">Tecnología Edge Computing</h3>
           <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
-            All OCR and redacting happens on your device. <br />
-            Sensitive data never leaves your hand.
+            Todo el OCR y la anonimización ocurre en tu dispositivo. <br />
+            Tus datos sensibles nunca salen de tu mano.
           </p>
 
           {/* Abstract scanning line animation simulation */}
@@ -107,7 +107,7 @@ export default function Home() {
       }}>
         <div className="glass-container" style={{ padding: '60px' }}>
           <h2 style={{ marginBottom: '32px', textAlign: 'center' }}>
-            Privacy <span className="neon-text-green">Manifesto</span>
+            Manifiesto de <span className="neon-text-green">Privacidad</span>
           </h2>
           <div style={{ 
             display: 'grid', 
@@ -115,21 +115,21 @@ export default function Home() {
             gap: '40px' 
           }}>
             <div>
-              <h4 style={{ marginBottom: '12px', color: 'var(--neon-blue)' }}>01. No Personal Data Storage</h4>
+              <h4 style={{ marginBottom: '12px', color: 'var(--neon-blue)' }}>01. Cero Almacenamiento de PII</h4>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
-                We don't want your name, your address, or your credit card numbers. Our scanners redact information locally before auditing.
+                No queremos tu nombre, dirección ni números de tarjeta. Nuestros escáneres omiten información personal localmente antes de la auditoría.
               </p>
             </div>
             <div>
-              <h4 style={{ marginBottom: '12px', color: 'var(--neon-blue)' }}>02. Edge-First Intelligence</h4>
+              <h4 style={{ marginBottom: '12px', color: 'var(--neon-blue)' }}>02. Inteligencia en el Dispositivo</h4>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
-                Artificial Intelligence shouldn't mean surveillance. We use Small Language Models (SLMs) that run in your browser.
+                La Inteligencia Artificial no debe significar vigilancia. Usamos modelos pequeños (SLMs) que se ejecutan 100% en tu navegador.
               </p>
             </div>
             <div>
-              <h4 style={{ marginBottom: '12px', color: 'var(--neon-blue)' }}>03. Your Claims, Your Power</h4>
+              <h4 style={{ marginBottom: '12px', color: 'var(--neon-blue)' }}>03. Tu Reclamación, Tu Poder</h4>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
-                Vindicat007 provides the legal ammunition. You decide when and how to fire it at corporations who overcharge you.
+                Vindicat007 te da la munición legal. Tú decides cuándo y cómo disparar contra las empresas que te cobran de más.
               </p>
             </div>
           </div>
@@ -143,7 +143,7 @@ export default function Home() {
         fontSize: '0.8rem',
         borderTop: '1px solid var(--glass-border)'
       }}>
-        VINDICAT007 &copy; 2026 | BUILT FOR THE SOVEREIGN CONSUMER
+        VINDICAT007 &copy; 2026 | CONSTRUIDO PARA EL CONSUMIDOR SOBERANO
       </footer>
     </main>
   );

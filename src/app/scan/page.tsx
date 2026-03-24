@@ -15,11 +15,11 @@ export default function ScanPage() {
   };
 
   const simulateProcess = async () => {
-    setStep(1); // Scanning
+    setStep(1); // Escaneando
     await new Promise(r => setTimeout(r, 3000));
-    setStep(2); // Redacting
+    setStep(2); // Anonimizando
     await new Promise(r => setTimeout(r, 2000));
-    setStep(3); // Success
+    setStep(3); // Éxito
   };
 
   return (
@@ -35,9 +35,9 @@ export default function ScanPage() {
         width: '100%'
       }}>
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span className="neon-text-blue">←</span> BACK
+          <span className="neon-text-blue">←</span> VOLVER
         </Link>
-        <span style={{ fontWeight: 700, letterSpacing: '2px' }}>FORENSIC SCAN</span>
+        <span style={{ fontWeight: 700, letterSpacing: '2px' }}>ESCÁNER FORENSE</span>
       </nav>
 
       <section style={{ 
@@ -72,10 +72,10 @@ export default function ScanPage() {
               }}
             />
             <div style={{ fontSize: '3rem', marginBottom: '20px' }}>📄</div>
-            <h3 style={{ marginBottom: '12px' }}>Upload Receipt</h3>
+            <h3 style={{ marginBottom: '12px' }}>Subir Ticket</h3>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
-              Drop your image here or click to scan. <br />
-              <span className="neon-text-green">Local processing only.</span>
+              Arrastra tu imagen aquí o haz clic para escanear. <br />
+              <span className="neon-text-green">Solo procesamiento local.</span>
             </p>
           </div>
         )}
@@ -91,13 +91,13 @@ export default function ScanPage() {
             {/* Status Indicator */}
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '30px' }}>
               <div style={{ color: step === 1 ? 'var(--neon-blue)' : 'var(--text-secondary)' }}>
-                {step === 1 ? '● SCANNING...' : '✓ SCANNED'}
+                {step === 1 ? '● ESCANEANDO...' : '✓ ESCANEADO'}
               </div>
               <div style={{ color: step === 2 ? 'var(--neon-blue)' : step > 2 ? 'var(--neon-green)' : 'var(--text-secondary)' }}>
-                {step === 2 ? '● REDACTING PII...' : step > 2 ? '✓ ANONYMIZED' : '○ REDACTION'}
+                {step === 2 ? '● ANONIMIZANDO...' : step > 2 ? '✓ ANONIMIZADO' : '○ PRIVACIDAD'}
               </div>
               <div style={{ color: step === 3 ? 'var(--neon-green)' : 'var(--text-secondary)' }}>
-                {step === 3 ? '✓ AUDIT READY' : '○ AUDIT'}
+                {step === 3 ? '✓ AUDITORÍA LISTA' : '○ AUDITORÍA'}
               </div>
             </div>
 
@@ -116,26 +116,26 @@ export default function ScanPage() {
               <div style={{ fontSize: '0.8rem', fontFamily: 'monospace', color: 'var(--text-secondary)' }}>
                 {step === 1 && (
                   <div className="extracting-text">
-                    [INFO] Extracting raw pixels... <br />
-                    [INFO] OCR Engine: VisionV2 <br />
-                    [DATA] Found: MERCADONA S.A. <br />
-                    [DATA] Found: 21.05.2026 - 18:45 <br />
-                    [DATA] Found: PAN TRADICIONAL ... 0.45€ <br />
+                    [INFO] Extrayendo píxeles... <br />
+                    [INFO] Motor OCR: VisionV2 <br />
+                    [DATA] Encontrado: MERCADONA S.A. <br />
+                    [DATA] Encontrado: 21.05.2026 - 18:45 <br />
+                    [DATA] Encontrado: PAN TRADICIONAL ... 0.45€ <br />
                   </div>
                 )}
                 {step === 2 && (
                   <div className="redacting-text">
-                    [PRIVACY] Redacting Card: **** **** **** 4421 <br />
-                    [PRIVACY] Removing Customer ID: 992831 <br />
-                    [PRIVACY] Sanitizing Store Address... <br />
-                    <span className="neon-text-green">[SUCCESS] Forensic Data Sanitized.</span>
+                    [PRIVACIDAD] Ocultando Tarjeta: **** **** **** 4421 <br />
+                    [PRIVACIDAD] Eliminando ID Cliente: 992831 <br />
+                    [PRIVACIDAD] Sanificando Dirección de Tienda... <br />
+                    <span className="neon-text-green">[ÉXITO] Datos Forenses Anonimizados.</span>
                   </div>
                 )}
                 {step === 3 && (
                   <div style={{ textAlign: 'center', marginTop: '40px' }}>
                     <h2 className="neon-text-green" style={{ fontSize: '3rem' }}>✓</h2>
-                    <h3>Ready for Audit</h3>
-                    <p style={{ marginTop: '10px' }}>PII removed. Structural data extracted.</p>
+                    <h3>Análisis Preparado</h3>
+                    <p style={{ marginTop: '10px' }}>PII eliminada. Estructura de datos extraída.</p>
                   </div>
                 )}
               </div>
@@ -155,7 +155,7 @@ export default function ScanPage() {
             {step === 3 && (
               <div style={{ marginTop: '30px', textAlign: 'center' }}>
                 <Link href="/results">
-                  <button className="btn-primary" style={{ width: '100%' }}>RUN FORENSIC AUDIT</button>
+                  <button className="btn-primary" style={{ width: '100%' }}>EJECUTAR AUDITORÍA FORENSE</button>
                 </Link>
               </div>
             )}

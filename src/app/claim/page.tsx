@@ -43,11 +43,11 @@ Forensic Evidence ID: V007-SCAN-9928`;
   return (
     <main style={{ padding: '0 20px', minHeight: '100vh', maxWidth: '800px', margin: '0 auto' }}>
       <nav style={{ padding: '24px 0', marginBottom: '40px' }}>
-        <Link href="/results" style={{ color: 'var(--neon-blue)' }}>← BACK TO EVIDENCE</Link>
+        <Link href="/results" style={{ color: 'var(--neon-blue)' }}>← VOLVER A LAS EVIDENCIAS</Link>
       </nav>
 
       <div className="glass-container" style={{ padding: '40px', marginBottom: '40px' }}>
-        <h2 style={{ marginBottom: '24px' }}>Generate <span className="neon-text-blue">Legal Claim</span></h2>
+        <h2 style={{ marginBottom: '24px' }}>Generar <span className="neon-text-blue">Reclamación Legal</span></h2>
         
         <div style={{ 
           background: 'rgba(0,0,0,0.3)', 
@@ -66,23 +66,23 @@ Forensic Evidence ID: V007-SCAN-9928`;
         </div>
 
         <div style={{ display: 'flex', gap: '16px' }}>
-          <button className="btn-primary" onClick={sendEmail} style={{ flex: 1 }}>SEND VIA EMAIL</button>
+          <button className="btn-primary" onClick={sendEmail} style={{ flex: 1 }}>ENVIAR POR EMAIL</button>
           <button className="btn-secondary" onClick={copyToClipboard} style={{ flex: 1 }}>
-            {copied ? "✓ COPIED" : "COPY TO CLIPBOARD"}
+            {copied ? "✓ COPIADO" : "COPIAR AL PORTAPAPELES"}
           </button>
         </div>
       </div>
 
       <div className="glass-container" style={{ padding: '30px', textAlign: 'center' }}>
-        <h4 className="neon-text-green">What happens next?</h4>
+        <h4 className="neon-text-green">¿Qué ocurre ahora?</h4>
         <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginTop: '10px' }}>
-          Most companies refund these small amounts instantly to avoid legal escalation. 
-          Vindicat007 empowered you with the exact law references.
+          La mayoría de las empresas reembolsan estos importes de inmediato para evitar escaladas legales. 
+          Vindicat007 te da el poder con las referencias exactas a la ley.
         </p>
       </div>
 
       <footer style={{ textAlign: 'center', padding: '60px 0', opacity: 0.5, fontSize: '0.8rem' }}>
-        FOR DEMONSTRATION PURPOSES | VINDICAT007 LEGAL RAG ENGINE
+        PARA FINES DEMOSTRATIVOS | MOTOR LEGAL RAG VINDICAT007
       </footer>
 
     </main>
