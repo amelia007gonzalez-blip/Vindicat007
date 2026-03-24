@@ -1,3 +1,5 @@
+import { supabase } from './supabase';
+
 export interface AuditIssue {
   type: 'IVA_ERROR' | 'REDUFLACION' | 'CARGO_INESPERADO';
   item: string;
@@ -16,7 +18,7 @@ const IVA_REGULATIONS: Record<string, number> = {
   "LECHE": 0.04,
   "FRUTA": 0.04,
   "LIBRO": 0.04,
-  "ACEITE": 0.00, // IVA eliminado temporalmente o reducido (ajustable)
+  "ACEITE": 0.00,
   "REFRESCO": 0.21,
   "ALCOHOL": 0.21,
 };
@@ -25,6 +27,23 @@ const PRECIOS_HISTORICOS: Record<string, { weight: number, price: number }> = {
   "Papas Fritas 150g": { weight: 150, price: 2.50 },
   "Aceite de Oliva 1L": { weight: 1000, price: 8.50 },
 };
+
+export async function saveAuditLog(amount: number, count: number) {
+  try {
+    const { error } = await supabase
+      .from('audit_logs')
+      .insert([
+        { 
+          recoverable_amount: amount, 
+          issues_count: count,
+          infraccion_types: ['LOCAL_FORENSIC_AUDIT']
+        }
+      ]);
+    if (error) console.error('Supabase Error:', error);
+  } catch (e) {
+    console.error('Audit Log Error:', e);
+  }
+}
 
 export function runAudit(data: any): AuditResult {
   const issues: AuditIssue[] = [];

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { runAudit, AuditResult } from "@/lib/audit-engine";
+import { runAudit, AuditResult, saveAuditLog } from "@/lib/audit-engine";
 
 export default function ResultsPage() {
   const [result, setResult] = useState<AuditResult | null>(null);
@@ -16,7 +16,11 @@ export default function ResultsPage() {
         { name: "LECHE ENTERA", total: 1.20, taxRate: 0.04, weight: 1000 },
       ]
     };
-    setResult(runAudit(mockData));
+    const auditRes = runAudit(mockData);
+    setResult(auditRes);
+    
+    // Loguear auditoría de forma anonimizada en Supabase
+    saveAuditLog(auditRes.totalRecoverable, auditRes.issues.length);
   }, []);
 
   if (!result) return <div style={{ textAlign: 'center', padding: '100px' }}>Analizando Datos Forenses...</div>;
