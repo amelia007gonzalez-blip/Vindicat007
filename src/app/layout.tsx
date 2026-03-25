@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Vindicat007 | Forensic Money Hunter",
-  description: "Detect VAT errors, shrinkflation, and hidden fees on your receipts. Your digital forensic intelligence layer for consumer rights.",
+  title: "Vindicat007 | El Cazador Forense de Dinero",
+  description: "Detecta errores en el IVA, reduflación y cargos ocultos en tus tickets. Tu capa de inteligencia forense digital para los derechos del consumidor.",
   manifest: "/manifest.json",
   icons: {
     icon: "/favicon.ico",
@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="es">
       <body>{children}</body>
     </html>
   );
